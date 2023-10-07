@@ -1,6 +1,7 @@
 # KEROSAR
 
-![Kerosar](https://drive.google.com/uc?export=view&id=10q_xrhqwoKNPvhLk2jJMZjwiInpQuXQj) ![Types_of_People](https://drive.google.com/uc?export=view&id=1KPwS4YuomZGbMBOnkkHKZyQ03UNADe6u)
+![Kerosar](https://drive.google.com/uc?export=view&id=10q_xrhqwoKNPvhLk2jJMZjwiInpQuXQj) | ![Types_of_People](https://drive.google.com/uc?export=view&id=1KPwS4YuomZGbMBOnkkHKZyQ03UNADe6u)
+-|-
 
 ---
 
