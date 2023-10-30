@@ -1,0 +1,158 @@
+# AUTOSAR Types and Data Conversion
+
+## Practical Lab
+
+```xml
+
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_00051.xsd">
+
+	<AR-PACKAGES>
+		<AR-PACKAGE>
+			<SHORT-NAME>myDataPack</SHORT-NAME>
+			<ELEMENTS>
+				<!-- Define APP Data Type -->
+				<!-- 1- Physical Dimension -->
+				<PHYSICAL-DIMENSION>
+					<SHORT-NAME>distance_in_meters</SHORT-NAME>
+					<LENGTH-EXP>1</LENGTH-EXP>
+				</PHYSICAL-DIMENSION>
+				<!-- 2- Define Unit -->
+				<UNIT>
+					<SHORT-NAME>meters</SHORT-NAME>
+					<FACTOR-SI-TO-UNIT>1</FACTOR-SI-TO-UNIT>
+					<PHYSICAL-DIMENSION-REF
+						DEST="PHYSICAL-DIMENSION">/myDataPack/distance_in_meters</PHYSICAL-DIMENSION-REF>
+
+				</UNIT>
+
+				<!-- 3- Define Computation Method -->
+				<COMPU-METHOD>
+					<SHORT-NAME>cm_meters</SHORT-NAME>
+					<CATEGORY>IDENTICAL</CATEGORY>
+					<UNIT-REF DEST="UNIT">/myDataPack/meters</UNIT-REF>
+				</COMPU-METHOD>
+
+				<!-- 4- Define Application Data Type -->
+				<APPLICATION-PRIMITIVE-DATA-TYPE>
+					<SHORT-NAME>MyMetersType</SHORT-NAME>
+					<CATEGORY>VALUE</CATEGORY>
+					<SW-DATA-DEF-PROPS>
+						<SW-DATA-DEF-PROPS-VARIANTS>
+							<SW-DATA-DEF-PROPS-CONDITIONAL>
+								<COMPU-METHOD-REF DEST="COMPU-METHOD">/myDataPack/cm_meters</COMPU-METHOD-REF>
+							</SW-DATA-DEF-PROPS-CONDITIONAL>
+						</SW-DATA-DEF-PROPS-VARIANTS>
+					</SW-DATA-DEF-PROPS>
+				</APPLICATION-PRIMITIVE-DATA-TYPE>
+
+				<!-- 5- Define ARRAY Application Data Type -->
+				<APPLICATION-ARRAY-DATA-TYPE>
+					<SHORT-NAME>MyMetersArrayType</SHORT-NAME>
+					<CATEGORY>ARRAY</CATEGORY>
+					<ELEMENT>
+						<SHORT-NAME>element</SHORT-NAME>
+						<CATEGORY>VALUE</CATEGORY>
+						<TYPE-TREF DEST="APPLICATION-PRIMITIVE-DATA-TYPE">/myDataPack/MyMetersType</TYPE-TREF>
+						<ARRAY-SIZE-SEMANTICS>FIXED-SIZE</ARRAY-SIZE-SEMANTICS>
+						<MAX-NUMBER-OF-ELEMENTS>4</MAX-NUMBER-OF-ELEMENTS>
+					</ELEMENT>
+				</APPLICATION-ARRAY-DATA-TYPE>
+
+				<!-- 6- Define Record Application Data Type -->
+				<APPLICATION-RECORD-DATA-TYPE>
+					<SHORT-NAME>MyPointType</SHORT-NAME>
+					<CATEGORY>STRUCTURE</CATEGORY>
+					<ELEMENTS>
+						<APPLICATION-RECORD-ELEMENT>
+							<SHORT-NAME>X</SHORT-NAME>
+							<CATEGORY>VALUE</CATEGORY>
+							<TYPE-TREF DEST="APPLICATION-PRIMITIVE-DATA-TYPE">/myDataPack/MyMetersType</TYPE-TREF>
+						</APPLICATION-RECORD-ELEMENT>
+
+						<APPLICATION-RECORD-ELEMENT>
+							<SHORT-NAME>Y</SHORT-NAME>
+							<CATEGORY>VALUE</CATEGORY>
+							<TYPE-TREF DEST="APPLICATION-PRIMITIVE-DATA-TYPE">/myDataPack/MyMetersType</TYPE-TREF>
+						</APPLICATION-RECORD-ELEMENT>
+					</ELEMENTS>
+				</APPLICATION-RECORD-DATA-TYPE>
+
+				<!-- ================= Base Types ================= -->
+				<SW-BASE-TYPE>
+					<SHORT-NAME>my_sint8</SHORT-NAME>
+					<CATEGORY>FIXED_LENGTH</CATEGORY>
+					<BASE-TYPE-SIZE>8</BASE-TYPE-SIZE>
+					<BASE-TYPE-ENCODING>2C</BASE-TYPE-ENCODING>
+					<MEM-ALIGNMENT>1</MEM-ALIGNMENT><!-- Should be 8 -->
+					<NATIVE-DECLARATION>char</NATIVE-DECLARATION>
+				</SW-BASE-TYPE>
+
+				<SW-BASE-TYPE>
+					<SHORT-NAME>my_uint8</SHORT-NAME>
+					<CATEGORY>FIXED_LENGTH</CATEGORY>
+					<BASE-TYPE-SIZE>8</BASE-TYPE-SIZE>
+					<BASE-TYPE-ENCODING>NONE</BASE-TYPE-ENCODING>
+					<MEM-ALIGNMENT>1</MEM-ALIGNMENT>
+					<NATIVE-DECLARATION>unsigned char</NATIVE-DECLARATION>
+				</SW-BASE-TYPE>
+
+				<!-- ================= Implementation Data Types ================= -->
+				<!-- 1- Define Data Constraints -->
+				<DATA-CONSTR>
+					<SHORT-NAME>DC_uint8</SHORT-NAME>
+					<DATA-CONSTR-RULES>
+						<DATA-CONSTR-RULE>
+							<PHYS-CONSTRS>
+								<LOWER-LIMIT>0</LOWER-LIMIT>
+								<UPPER-LIMIT>255</UPPER-LIMIT>
+							</PHYS-CONSTRS>
+							<INTERNAL-CONSTRS>
+								<LOWER-LIMIT>0</LOWER-LIMIT>
+								<UPPER-LIMIT>255</UPPER-LIMIT>
+							</INTERNAL-CONSTRS>
+						</DATA-CONSTR-RULE>
+					</DATA-CONSTR-RULES>
+				</DATA-CONSTR>
+
+				<!-- 2- Define IMPLEMENTATION Type -->
+				<IMPLEMENTATION-DATA-TYPE>
+					<SHORT-NAME>uint8</SHORT-NAME>
+					<CATEGORY>VALUE</CATEGORY>
+					<SW-DATA-DEF-PROPS>
+						<SW-DATA-DEF-PROPS-VARIANTS>
+							<SW-DATA-DEF-PROPS-CONDITIONAL>
+								<BASE-TYPE-REF DEST="SW-BASE-TYPE">/myDataPack/my_uint8</BASE-TYPE-REF>
+								<DATA-CONSTR-REF DEST="DATA-CONSTR">/myDataPack/DC_uint8</DATA-CONSTR-REF>
+							</SW-DATA-DEF-PROPS-CONDITIONAL>
+						</SW-DATA-DEF-PROPS-VARIANTS>
+					</SW-DATA-DEF-PROPS>
+				</IMPLEMENTATION-DATA-TYPE>
+
+				<!-- Mapping APP Data Type to Implementation Data Type -->
+				<DATA-TYPE-MAPPING-SET>
+					<SHORT-NAME>DataTypeMapping</SHORT-NAME>
+					<DATA-TYPE-MAPS>
+						<DATA-TYPE-MAP>
+							<APPLICATION-DATA-TYPE-REF
+								DEST="APPLICATION-PRIMITIVE-DATA-TYPE">/myDataPack/MyMetersType</APPLICATION-DATA-TYPE-REF>
+							<IMPLEMENTATION-DATA-TYPE-REF
+								DEST="IMPLEMENTATION-DATA-TYPE">/myDataPack/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+						</DATA-TYPE-MAP>
+					</DATA-TYPE-MAPS>
+				</DATA-TYPE-MAPPING-SET>
+
+			</ELEMENTS>
+
+		</AR-PACKAGE>
+
+	</AR-PACKAGES>
+
+</AUTOSAR>
+
+
+```
+
+---
