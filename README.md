@@ -7,32 +7,31 @@
 
 ## Contents
 
-### First Term ![image](https://progress-bar.dev/10/?title=In_Progress&color=ff00ff)
+### Unit 1: Getting started to learn AUTOSAR ![image](https://progress-bar.xyz/100/?title=Progress&width=100&prefix=No+Labs+|+)
 
-- Unit 1: Getting started to learn AUTOSAR ![image](https://progress-bar.dev/100/?title=No_Assignments&color=bababa)
-- [Unit 2: AUTOSAR Architecture and Methodology](02_ASAR_Arch_and_Methodology) ![image](https://progress-bar.dev/100/)
-- [Unit 3: AUTOSAR SW Layer](03_ASAR_SW_Layer) ![image](https://progress-bar.dev/75/)
-- More units are coming soon
+### [Unit 2: AUTOSAR Architecture and Methodology](02_ASAR_Arch_and_Methodology) ![image](https://progress-bar.xyz/100/?title=Progress&width=100)
 
----
+### [Unit 3: AUTOSAR SW Layer](03_ASAR_SW_Layer) ![image](https://progress-bar.xyz/75/?title=Progress&width=100)
 
-### Second Term ![image](https://progress-bar.dev/0/?title=In_2024&color=ff0000)
+### Unit 4: AUTOSAR OS ![image](https://progress-bar.xyz/0/?title=Progress&width=100)
 
----
+### Unit 5: AUTOSAR MCAL Layer ![image](https://progress-bar.xyz/0/?title=Progress&width=100)
 
-### Third Term ![image](https://progress-bar.dev/0/?title=In_2024&color=ff0000)
+### Unit 6: AUTOSAR COM Stack ![image](https://progress-bar.xyz/0/?title=Progress&width=100)
 
----
+### Unit 7: AUTOSAR NVM Stack ![image](https://progress-bar.xyz/0/?title=Progress&width=100)
 
-## Overall progress ![image](https://progress-bar.dev/1/?scale=3&title=Terms&suffix=&width=230&color=aa00ff)
+### Unit 8: AUTOSAR Diagnostic Stack ![image](https://progress-bar.xyz/0/?title=Progress&width=100)
+
+### Unit 9: AUTOSAR Crypto Stack ![image](https://progress-bar.xyz/0/?title=Progress&width=100)
+
+### Unit 10: Mastering CAN Protocol ![image](https://progress-bar.xyz/0/?title=Progress&width=100)
+
+### Unit 11: AUTOSAR Network Management Modules ![image](https://progress-bar.xyz/0/?title=Progress&width=100)
 
 ---
 
 ![LID](https://drive.google.com/uc?export=view&id=1fJyC5LywUIVvj_CNiZmcwNaNyVM9Ltf3)
-
----
-
-## My Progress Profile: [Coming Soon]()
 
 ---
 
